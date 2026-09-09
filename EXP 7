@@ -1,1 +1,82 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+# Load Dataset
+df = pd.read_csv("daily_food_nutrition_dataset.csv")
+
+plt.figure(figsize=(14,18))
+
+# Graph 1: Food Category Distribution
+plt.subplot(4,1,1)
+df['Category'].value_counts().plot(
+    kind='bar',
+    color='steelblue'
+)
+plt.title("Food Category Distribution")
+plt.xlabel("Category")
+plt.ylabel("Count")
+
+# Graph 2: Average Calories by Meal Type
+plt.subplot(4,1,2)
+avg_calories = df.groupby('Meal_Type')['Calories (kcal)'].mean()
+avg_calories.sort_values().plot(
+    kind='barh',
+    color='teal'
+)
+plt.title("Average Calories by Meal Type")
+plt.xlabel("Calories")
+
+# Graph 3: Average Nutrient Values
+plt.subplot(4,1,3)
+
+nutrients = [
+    'Protein (g)',
+    'Carbohydrates (g)',
+    'Fat (g)',
+    'Fiber (g)',
+    'Sugars (g)'
+]
+
+df[nutrients].mean().plot(
+    kind='line',
+    marker='o'
+)
+
+plt.title("Average Nutrient Distribution")
+plt.ylabel("Average Value")
+
+# Graph 4: Correlation Heatmap
+plt.subplot(4,1,4)
+
+corr = df[
+[
+'Calories (kcal)',
+'Protein (g)',
+'Carbohydrates (g)',
+'Fat (g)',
+'Fiber (g)',
+'Sugars (g)',
+'Sodium (mg)',
+'Cholesterol (mg)',
+'Water_Intake (ml)'
+]
+].corr()
+
+sns.heatmap(
+    corr,
+    annot=True,
+    cmap='viridis'
+)
+
+plt.title("Nutrition Correlation Heatmap")
+
+plt.tight_layout()
+
+plt.savefig(
+    "Food_Nutrition_Exp1A_Output.png",
+    dpi=300,
+    bbox_inches='tight'
+)
+
+plt.show()
