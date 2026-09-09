@@ -1,82 +1,82 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+Aim
+To connect, analyze, visualize, and create interactive dashboards using Tableau for effective Food and Nutrition data analysis and nutritional pattern visualization.
 
-# Load Dataset
-df = pd.read_csv("daily_food_nutrition_dataset.csv")
+Algorithm: 
+Food and Nutrition Dataset Visualization Using Tableau
+Step 1: Data Loading
+Connect the Food and Nutrition Dataset to Tableau.
+Verify the imported fields such as Food Item, Category, Calories, Protein, Carbohydrates, Fat, Fiber, Sugars, Sodium, Cholesterol, Meal Type, and Water Intake.
+The dataset contains nutritional information for various food items and meal categories.
+Step 2: Food Category Bar Chart
+Create a worksheet for category-wise calorie analysis.
+Place Category on Columns.
+Place Calories on Rows.
+Aggregate Calories using SUM.
+Select the Bar Chart visualization.
+Enable data labels to display total calories for each category.
+Step 3: Meal Type Contribution Visualization
+Create a worksheet using Meal Type and Calories.
+Aggregate Calories using SUM.
+Visualize the contribution of each meal type using a Pie Chart or Donut Chart.
+Display meal types and calorie percentages as labels.
+Step 4: Nutritional Trend Analysis
+Create a Line Chart using Nutrients and Average Values.
+Place Nutrient Type on Columns.
+Place Average Nutrient Value on Rows.
+Enable labels to display nutrient values.
+Use the chart to compare nutritional components.
+Step 5: Calorie Percentage Analysis
+Create a calculated field named:
+Calorie Percentage
 
-plt.figure(figsize=(14,18))
+Formula:
 
-# Graph 1: Food Category Distribution
-plt.subplot(4,1,1)
-df['Category'].value_counts().plot(
-    kind='bar',
-    color='steelblue'
-)
-plt.title("Food Category Distribution")
-plt.xlabel("Category")
-plt.ylabel("Count")
+SUM([Calories]) / TOTAL(SUM([Calories])) * 100
+Display Food Category, Total Calories, and Calorie Percentage in a worksheet.
+Step 6: Meal Type Filter
+Add Meal Type to the Filters shelf.
+Select a meal type such as Breakfast, Lunch, Dinner, or Snack.
+Observe the updated nutritional statistics based on the selected meal type.
+Step 7: Minimum Calories Parameter
+Create a parameter named:
+Minimum Calories
+Set an appropriate calorie threshold.
+Create a calculated field:
+[Calories] >= [Minimum Calories]
+Display only food items meeting the selected minimum calorie value.
+Example:
+Minimum Calories = 200
+Display foods having calories ≥ 200.
+Step 8: Dashboard Creation
+Create a new Tableau Dashboard.
+Add:
+Total Calories KPI
+Food Category Bar Chart
+Meal Type Contribution Chart
+Nutritional Trend Chart
+Calorie Percentage Table
+Minimum Calories Visualization
+Arrange worksheets neatly.
+Add Meal Type Filter.
+Add Minimum Calories Parameter.
+Format the dashboard with suitable titles and labels.
+Step 9: Story Creation
 
-# Graph 2: Average Calories by Meal Type
-plt.subplot(4,1,2)
-avg_calories = df.groupby('Meal_Type')['Calories (kcal)'].mean()
-avg_calories.sort_values().plot(
-    kind='barh',
-    color='teal'
-)
-plt.title("Average Calories by Meal Type")
-plt.xlabel("Calories")
+Create a Tableau Story using the completed dashboard.
 
-# Graph 3: Average Nutrient Values
-plt.subplot(4,1,3)
+Add Story Points for:
 
-nutrients = [
-    'Protein (g)',
-    'Carbohydrates (g)',
-    'Fat (g)',
-    'Fiber (g)',
-    'Sugars (g)'
-]
-
-df[nutrients].mean().plot(
-    kind='line',
-    marker='o'
-)
-
-plt.title("Average Nutrient Distribution")
-plt.ylabel("Average Value")
-
-# Graph 4: Correlation Heatmap
-plt.subplot(4,1,4)
-
-corr = df[
-[
-'Calories (kcal)',
-'Protein (g)',
-'Carbohydrates (g)',
-'Fat (g)',
-'Fiber (g)',
-'Sugars (g)',
-'Sodium (mg)',
-'Cholesterol (mg)',
-'Water_Intake (ml)'
-]
-].corr()
-
-sns.heatmap(
-    corr,
-    annot=True,
-    cmap='viridis'
-)
-
-plt.title("Nutrition Correlation Heatmap")
-
-plt.tight_layout()
-
-plt.savefig(
-    "Food_Nutrition_Exp1A_Output.png",
-    dpi=300,
-    bbox_inches='tight'
-)
-
-plt.show()
+1. Overall Nutritional Analysis
+Total calories and nutrient distribution.
+2. Category-wise Food Analysis
+Comparison of calories among food categories.
+3. High-Calorie Food Analysis
+Foods having maximum calorie content.
+4. Final Nutrition Insights
+Summary of nutritional patterns and meal contributions.
+Step 10: Analysis
+Analyze categories with the highest and lowest calorie contribution.
+Compare nutrient values among food categories.
+Observe how Meal Type filters dynamically change visualizations.
+Analyze the impact of the Minimum Calories parameter.
+Use the dashboard and story to summarize overall nutritional trends and dietary patterns.
