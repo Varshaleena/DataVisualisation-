@@ -1,1 +1,75 @@
+Aim
+To load the data into Power BI, transform the data, and visualize it to obtain meaningful insights.
 
+Algorithm: 
+Sales Dashboard Calculation
+
+Step 1: Input Data Loading
+
+Load the dataset datas.csv containing the columns Product, Region, and Sales.
+The dataset contains the following records:
+Laptop, North, 50000
+Mobile, South, 35000
+Printer, East, 25000
+Laptop, West, 45000
+Mobile, North, 40000
+Printer, South, 30000
+
+Step 2: Region Filter Check
+
+Check the region slicer selection.
+By default, select East, North, South, and West.
+Retain all rows matching the selected regions in Filtered_Data.
+
+Step 3: KPI — Total Sales Calculation
+
+Calculate the sum of the Sales column from Filtered_Data.
+Total Sales:
+50000 + 35000 + 25000 + 45000 + 40000 + 30000 = 225000
+Display the total sales as 225K in the KPI card.
+
+Step 4: Bar Chart — Sales by Product
+
+Group the filtered data by Product.
+Calculate the total sales for each product:
+Laptop = 50,000 + 45,000 = 95,000
+Mobile = 35,000 + 40,000 = 75,000
+Printer = 25,000 + 30,000 = 55,000
+Sort the products in descending order of sales:
+Laptop — 95K
+Mobile — 75K
+Printer — 55K
+
+Step 5: Donut Chart — Sales by Region
+
+Group the filtered data by Region.
+Calculate total sales for each region:
+North = 50,000 + 40,000 = 90,000
+South = 35,000 + 30,000 = 65,000
+West = 45,000
+East = 25,000
+Calculate the percentage contribution of each region:
+North = (90000 / 225000) × 100 = 40.00%
+South = (65000 / 225000) × 100 = 28.89%
+West  = (45000 / 225000) × 100 = 20.00%
+East  = (25000 / 225000) × 100 = 11.11%
+
+Step 6: Dashboard Rendering
+
+Display a KPI card showing 225K as the total sales.
+Display a vertical bar chart showing:
+Laptop — 95K
+Mobile — 75K
+Printer — 55K
+Display a donut chart showing:
+North — 90K (40%)
+South — 65K (28.89%)
+West — 45K (20%)
+East — 25K (11.11%)
+Display a region slicer with:
+East
+North
+South
+West
+
+Result: The sales data was successfully loaded, transformed, analyzed, and visualized in Power BI using KPI cards, a bar chart, a donut chart, and a region slicer.
